@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import './App.css';
+import About from './Components/About';
+import Alert from './Components/Alert';
+import Navbar from './Components/Navbar';
+
+function App() {
+  const [mode, setMode] = useState('light'); // whether dark mode is enabled or not
+  const [alert, setAlert] = useState(null);
+
+  const showAlert = (message, type) => {
+    setAlert({
+      message: message,
+      type: type
+    });
+  };
+
+  const toggleMode = () => {
+    if (mode === 'light') {
+      setMode('dark');
+      document.body.style.backgroundColor = 'gray';
+      showAlert('Dark Mode has been enabled', 'success');
+    } else {
+      setMode('light');
+      document.body.style.backgroundColor = 'white';
+      showAlert('Light Mode has been enabled', 'success');
+    }
+  };
+
+  const changeBlue = () => {
+    document.body.style.backgroundColor = 'blue';
+    showAlert('Blue Mode has been enabled', 'success');
+  };
+
+  const changeGreen = () => {
+    document.body.style.backgroundColor = 'green';
+    showAlert('Green Mode has been enabled', 'success');
+  };
+
+  const changeRed = () => {
+    document.body.style.backgroundColor = 'red';
+    showAlert('Red Mode has been enabled', 'success');
+  };
+
+  const changeYellow = () => {
+    document.body.style.backgroundColor = 'yellow';
+    showAlert('Yellow Mode has been enabled', 'success');
+  };
+
+
+
+  return (
+    <div className={`App ${mode}`}>
+      <Navbar
+        title="PMusic"
+        mode={mode}
+        toggleMode={toggleMode}
+        changeBlue={changeBlue}
+        changeGreen={changeGreen}
+        changeRed={changeRed}
+        changeYellow={changeYellow}
+
+      />
+
+      <Alert alert={alert} />
+
+      <div className="container">
+        <About />
+      </div>
+    </div>
+  );
+}
+
+export default App;
